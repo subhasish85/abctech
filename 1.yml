@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: building docker image
+    command: docker build -t retailmodule-igp .
+    args:
+      chdir: /home/edureka
+
+  - name: creating docker image using docker command
+    command: docker run -d --name retailmodule-container -p 8091:8080 retailmodule-igp

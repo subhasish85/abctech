@@ -1,0 +1,19 @@
+---
+- hosts: ansible-server
+  become: true
+  tasks:
+  - name: building docker image
+    command: docker build -t retailmodule:latest .
+    args:
+      chdir: /home/edureka
+
+  - name: create tag to image
+    command: docker tag retailmodule spattanaik855/retailmodule
+
+  - name: push image on to dockerhub
+    command: docker push spattanaik855/retailmodule
+
+  - name: remove docker images form ansible server
+    command: docker rmi retailmodule:latest spattanaik855/retailmodule
+    ignore_errors: yes
+

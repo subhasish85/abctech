@@ -1,0 +1,11 @@
+---
+- name: Create pods using deployment 
+  hosts: kubernetes 
+  # become: true
+  user: edureka
+
+  tasks: 
+  - name: create a deployment
+    command: kubectl apply -f abct-deploy.yml
+
+ 
